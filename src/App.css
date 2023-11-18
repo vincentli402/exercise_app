@@ -13,46 +13,10 @@ body {
   width: 0px;
 }
 
-/* .left-arrow {
-  cursor: pointer;
-  background: transparent;
-  outline: none;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ff2625;
-  font-size: 25px;
-  border-radius: 4px;
-  position: absolute;
-  bottom: -20px;
-  right: calc(50% + 10px);
-  transform: translateX(-50%) scale(1, 1);
-  transition: 0.3s all ease-in-out;
+.horizontal-scrollbar-container {
+  overflow-x: auto;
+  white-space: nowrap;
 }
-
-.right-arrow {
-  cursor: pointer;
-  background: transparent;
-  outline: none;
-  border: none;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  color: #ff2625;
-  font-size: 25px;
-  border-radius: 4px;
-  position: absolute;
-  bottom: -20px;
-  left: calc(50% + 10px);
-  transform: translateX(50%) scale(1, 1);
-  transition: 0.3s all ease-in-out;
-}
-
-.right-arrow:hover,
-.left-arrow:hover {
-  transform: scale(1.3, 1.3);
-} */
 
 .react-horizontal-scrolling-menu--wrapper {
   width: 100%;
@@ -121,9 +85,4 @@ body {
   .exercise-card {
     width: 280px;
   }
-}
-
-.horizontal-scrollbar-container {
-  overflow-x: auto;
-  white-space: nowrap;
 }
