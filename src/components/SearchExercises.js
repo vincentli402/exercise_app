@@ -8,14 +8,15 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   useEffect(() => {
     const fetchBodyParts = () => {
-      fetch("https://exercisedb.p.rapidapi.com/exercises/bodyPartList")
+      fetch("http://localhost:4000/api/bodyPartList")
         .then((response) => {
+          console.log("Response status:", response.status);
           if (!response.ok) {
             throw new Error("Error in response");
           }
           return response.json();
         })
-        .then((bodyPartsData) => {
+        .then((bodyPartsData) => {  
           setBodyParts(bodyPartsData);
         })
         .catch((error) => {
@@ -28,8 +29,9 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
 
   const handleSearch = () => {
     if (search) {
-      fetch("https://exercisedb.p.rapidapi.com/exercises")
+      fetch("http://localhost:4000/api/exercises")
         .then((response) => {
+          console.log("Response status:", response.status);
           if (!response.ok) {
             throw new Error("Error in response");
           }

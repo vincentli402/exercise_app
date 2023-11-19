@@ -86,3 +86,9 @@ body {
     width: 280px;
   }
 }
+
+footer {
+  text-align: center;
+  padding:10px;
+  bottom: 0;
+}

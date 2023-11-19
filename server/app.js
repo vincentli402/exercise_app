@@ -17,6 +17,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/api/exercises", (req, res) => {
+  console.log("Received request to /api/exercises");
   fetch("https://exercisedb.p.rapidapi.com/exercises", {
     headers: {
       "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
@@ -38,7 +39,31 @@ app.get("/api/exercises", (req, res) => {
     });
 });
 
+app.get("/api/bodyPartList", (req, res) => {
+    console.log("Received request to /api/bodyPartList");
+    fetch("https://exercisedb.p.rapidapi.com/exercises/bodyPartList", {
+      headers: {
+        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Error in response");
+        }
+        return response.json();
+      })
+      .then((bodyPartsData) => {
+        res.json(bodyPartsData);
+      })
+      .catch((error) => {
+        console.error("Error fetching body parts list from the API:", error.message);
+        res.status(500).json({ error: "Internal Server Error" });
+      });
+  });
+
 app.get("/api/exercises/bodyPart/:bodyPart", (req, res) => {
+  console.log("Received request to /api/exercises/bodyPart");
   const { bodyPart } = req.params;
 
   fetch(`https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`, {

@@ -9,13 +9,14 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   useEffect(() => {
     const fetchExercisesData = () => {
-      let endpoint = "https://exercisedb.p.rapidapi.com/exercises";
+      let endpoint = "http://localhost:4000/api/exercises";
       if (bodyPart !== "all") {
-        endpoint = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
+        endpoint = `http://localhost:4000/api/exercises/bodyPart/${bodyPart}`;
       }
 
       fetch(endpoint)
         .then((response) => {
+          console.log("Response status:", response.status);
           if (!response.ok) {
             throw new Error("Error in response");
           }
@@ -25,7 +26,7 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           setExercises((prevExercises) => [...prevExercises, ...newExercisesData]);
         })
         .catch((error) => {
-          console.error("Error fetching data from the server:", error.message);
+          console.error("Error fetching exercises data from the server:", error.message);
         });
     };
 

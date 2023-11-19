@@ -11,6 +11,7 @@ const ExerciseDetail = () => {
     const fetchExerciseDetail = () => {
       fetch(`https://exercisedb.p.rapidapi.com/exercises/${id}`)
         .then((response) => {
+          console.log("Response status:", response.status);
           if (!response.ok) {
             throw new Error("Error in response");
           }
