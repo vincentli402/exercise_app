@@ -1,6 +1,6 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
+import { Link } from "react-router-dom";
 
 const ExerciseCard = ({ exercise }) => (
   <Link className="exercise-card" to={`/exercise/${exercise.id}`}>

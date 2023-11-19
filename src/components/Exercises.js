@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import Pagination from "@mui/material/Pagination";
 import { Box, Stack, Typography } from "@mui/material";
-
-import { exerciseOptions, fetchData } from "../utils/fetchData";
 import ExerciseCard from "./ExerciseCard";
 
 const Exercises = ({ exercises, setExercises, bodyPart }) => {
@@ -10,22 +8,25 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
   const [exercisesPerPage] = useState(6);
 
   useEffect(() => {
-    const fetchExercisesData = async () => {
-      let exercisesData = [];
-
-      if (bodyPart === "all") {
-        exercisesData = await fetchData(
-          "https://exercisedb.p.rapidapi.com/exercises",
-          exerciseOptions
-        );
-      } else {
-        exercisesData = await fetchData(
-          `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`,
-          exerciseOptions
-        );
+    const fetchExercisesData = () => {
+      let endpoint = "https://exercisedb.p.rapidapi.com/exercises";
+      if (bodyPart !== "all") {
+        endpoint = `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${bodyPart}`;
       }
 
-      setExercises(exercisesData);
+      fetch(endpoint)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error in response");
+          }
+          return response.json();
+        })
+        .then((newExercisesData) => {
+          setExercises((prevExercises) => [...prevExercises, ...newExercisesData]);
+        })
+        .catch((error) => {
+          console.error("Error fetching data from the server:", error.message);
+        });
     };
 
     fetchExercisesData();
@@ -33,14 +34,10 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = exercises.slice(
-    indexOfFirstExercise,
-    indexOfLastExercise
-  );
+  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
 
   const paginate = (event, value) => {
     setCurrentPage(value);
-
     window.scrollTo({ top: 1800, behavior: "smooth" });
   };
 
@@ -51,15 +48,12 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
       </Typography>
 
       {exercises.length === 0 ? (
-        <Typography fontSize="30px" fontWeight="bold" textAlign="center" mb="60px">No exercises found</Typography>
+        <Typography fontSize="30px" fontWeight="bold" textAlign="center" mb="60px">
+          No exercises found
+        </Typography>
       ) : (
         <>
-          <Stack
-            direction="row"
-            gap="150px"
-            flexWrap="wrap"
-            justifyContent="center"
-          >
+          <Stack direction="row" gap="150px" flexWrap="wrap" justifyContent="center">
             {currentExercises.map((exercise, idx) => (
               <ExerciseCard key={idx} exercise={exercise} />
             ))}

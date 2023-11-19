@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Box, Button, Stack, TextField, Typography } from "@mui/material";
-
-import { exerciseOptions, fetchData } from "../utils/fetchData";
 import HorizontalScrollbar from "./HorizontalScrollbar";
 
 const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
@@ -9,42 +7,56 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
   const [bodyParts, setBodyParts] = useState([]);
 
   useEffect(() => {
-    const fetchExercisesData = async () => {
-      const bodyPartsData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises/bodyPartList",
-        exerciseOptions
-      );
-
-      setBodyParts([...bodyPartsData]);
+    const fetchBodyParts = () => {
+      fetch("https://exercisedb.p.rapidapi.com/exercises/bodyPartList")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error in response");
+          }
+          return response.json();
+        })
+        .then((bodyPartsData) => {
+          setBodyParts(bodyPartsData);
+        })
+        .catch((error) => {
+          console.error("Error fetching body parts from the server:", error.message);
+        });
     };
 
-    fetchExercisesData();
+    fetchBodyParts();
   }, []);
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (search) {
-      const exercisesData = await fetchData(
-        "https://exercisedb.p.rapidapi.com/exercises",
-        exerciseOptions
-      );
+      fetch("https://exercisedb.p.rapidapi.com/exercises")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Error in response");
+          }
+          return response.json();
+        })
+        .then((exercisesData) => {
+          const searchedExercises = exercisesData.filter(
+            (item) =>
+              item.name.toLowerCase().includes(search) ||
+              item.target.toLowerCase().includes(search) ||
+              item.equipment.toLowerCase().includes(search) ||
+              item.bodyPart.toLowerCase().includes(search)
+          );
 
-      const searchedExercises = exercisesData.filter(
-        (item) =>
-          item.name.toLowerCase().includes(search) ||
-          item.target.toLowerCase().includes(search) ||
-          item.equipment.toLowerCase().includes(search) ||
-          item.bodyPart.toLowerCase().includes(search)
-      );
+          window.scrollTo({ top: 600, left: 100, behavior: "smooth" });
 
-      window.scrollTo({ top: 600, left: 100, behavior: "smooth" });
-
-      setSearch("");
-      setExercises(searchedExercises);
+          setSearch("");
+          setExercises(searchedExercises);
+        })
+        .catch((error) => {
+          console.error("Error fetching data from the server:", error.message);
+        });
     }
   };
 
   return (
-    <Stack alignItems="center" mt="20x" justifyContent="center" p="20px">
+    <Stack alignItems="center" mt="20px" justifyContent="center" p="20px">
       <Typography fontWeight="700" fontSize="45px" mb="30px" textAlign="center">
         Exercises To Get You Started
       </Typography>
