@@ -1,10 +1,12 @@
 const express = require("express");
 const cors = require("cors");
+const fetch = require("cross-fetch");
+require("dotenv").config(); // Load environment variables
 
 const app = express();
 
 const corsOptions = {
-  origin: "http://localhost:3000", // Update with your React app's origin
+  origin: "http://localhost:3000",
   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
   optionsSuccessStatus: 204,
@@ -40,27 +42,27 @@ app.get("/api/exercises", (req, res) => {
 });
 
 app.get("/api/bodyPartList", (req, res) => {
-    console.log("Received request to /api/bodyPartList");
-    fetch("https://exercisedb.p.rapidapi.com/exercises/bodyPartList", {
-      headers: {
-        "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
-      },
+  console.log("Received request to /api/bodyPartList");
+  fetch("https://exercisedb.p.rapidapi.com/exercises/bodyPartList", {
+    headers: {
+      "X-RapidAPI-Host": "exercisedb.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+    },
+  })
+    .then((response) => {
+      if (!response.ok) {
+        throw new Error("Error in response");
+      }
+      return response.json();
     })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Error in response");
-        }
-        return response.json();
-      })
-      .then((bodyPartsData) => {
-        res.json(bodyPartsData);
-      })
-      .catch((error) => {
-        console.error("Error fetching body parts list from the API:", error.message);
-        res.status(500).json({ error: "Internal Server Error" });
-      });
-  });
+    .then((bodyPartsData) => {
+      res.json(bodyPartsData);
+    })
+    .catch((error) => {
+      console.error("Error fetching body parts list from the API:", error.message);
+      res.status(500).json({ error: "Internal Server Error" });
+    });
+});
 
 app.get("/api/exercises/bodyPart/:bodyPart", (req, res) => {
   console.log("Received request to /api/exercises/bodyPart");
