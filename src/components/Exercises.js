@@ -22,11 +22,14 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
           }
           return response.json();
         })
-        .then((newExercisesData) => {
-          setExercises((prevExercises) => [...prevExercises, ...newExercisesData]);
+        .then((exercisesData) => {
+          setExercises(exercisesData);
         })
         .catch((error) => {
-          console.error("Error fetching exercises data from the server:", error.message);
+          console.error(
+            "Error fetching exercises data from the server:",
+            error.message
+          );
         });
     };
 
@@ -35,11 +38,14 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
 
   const indexOfLastExercise = currentPage * exercisesPerPage;
   const indexOfFirstExercise = indexOfLastExercise - exercisesPerPage;
-  const currentExercises = exercises.slice(indexOfFirstExercise, indexOfLastExercise);
+  const currentExercises = exercises.slice(
+    indexOfFirstExercise,
+    indexOfLastExercise
+  );
 
   const paginate = (event, value) => {
     setCurrentPage(value);
-    window.scrollTo({ top: 1800, behavior: "smooth" });
+    window.scrollTo({ top: 650, behavior: "smooth" });
   };
 
   return (
@@ -49,12 +55,22 @@ const Exercises = ({ exercises, setExercises, bodyPart }) => {
       </Typography>
 
       {exercises.length === 0 ? (
-        <Typography fontSize="30px" fontWeight="bold" textAlign="center" mb="60px">
+        <Typography
+          fontSize="30px"
+          fontWeight="bold"
+          textAlign="center"
+          mb="60px"
+        >
           No exercises found
         </Typography>
       ) : (
         <>
-          <Stack direction="row" gap="150px" flexWrap="wrap" justifyContent="center">
+          <Stack
+            direction="row"
+            gap="150px"
+            flexWrap="wrap"
+            justifyContent="center"
+          >
             {currentExercises.map((exercise, idx) => (
               <ExerciseCard key={idx} exercise={exercise} />
             ))}

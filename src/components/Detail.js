@@ -5,7 +5,10 @@ const Detail = ({ exerciseDetail }) => {
   const { bodyPart, gifUrl, name, target, equipment } = exerciseDetail;
 
   return (
-    <Stack gap="60px" sx={{ flexDirection: "row", p: "20px", alignItems: "center" }}>
+    <Stack
+      gap="60px"
+      sx={{ flexDirection: "row", p: "20px", alignItems: "center" }}
+    >
       <img src={gifUrl} alt={name} loading="lazy" className="detail-image" />
 
       <Stack sx={{ gap: "30px" }}>

@@ -16,11 +16,14 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
           }
           return response.json();
         })
-        .then((bodyPartsData) => {  
+        .then((bodyPartsData) => {
           setBodyParts(bodyPartsData);
         })
         .catch((error) => {
-          console.error("Error fetching body parts from the server:", error.message);
+          console.error(
+            "Error fetching body parts from the server:",
+            error.message
+          );
         });
     };
 
@@ -46,7 +49,7 @@ const SearchExercises = ({ setExercises, bodyPart, setBodyPart }) => {
               item.bodyPart.toLowerCase().includes(search)
           );
 
-          window.scrollTo({ top: 600, left: 100, behavior: "smooth" });
+          window.scrollTo({ top: 650, left: 100, behavior: "smooth" });
 
           setSearch("");
           setExercises(searchedExercises);

@@ -15,7 +15,11 @@ const HorizontalScrollbar = ({ data, bodyParts, setBodyPart, bodyPart }) => (
           style={{ display: "inline-block" }}
         >
           {bodyParts ? (
-            <BodyPart item={item} setBodyPart={setBodyPart} bodyPart={bodyPart} />
+            <BodyPart
+              item={item}
+              setBodyPart={setBodyPart}
+              bodyPart={bodyPart}
+            />
           ) : (
             <ExerciseCard exercise={item} />
           )}

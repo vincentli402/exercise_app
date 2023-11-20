@@ -13,7 +13,7 @@ const App = () => {
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/exercise/:id" element={<ExerciseDetail />} />
+        <Route path="/exercise/:exerciseId" element={<ExerciseDetail />} />
       </Routes>
     </Box>
   );

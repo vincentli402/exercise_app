@@ -5,7 +5,13 @@ import Logo from "../assets/icons/Logo.png";
 
 const Navbar = () => {
   return (
-    <Stack direction="row" justifyContent="none" gap="450px" mt="20px" px="20px">
+    <Stack
+      direction="row"
+      justifyContent="none"
+      gap="450px"
+      mt="20px"
+      px="20px"
+    >
       <Link to="/">
         <img
           src={Logo}
@@ -13,7 +19,13 @@ const Navbar = () => {
           style={{ width: "75px", height: "75px", margin: "0px 20px" }}
         />
       </Link>
-      <Stack direction="row" margin="25px" gap="60px" fontSize="24px" alignItems="flex-end">
+      <Stack
+        direction="row"
+        margin="25px"
+        gap="60px"
+        fontSize="24px"
+        alignItems="flex-end"
+      >
         <Link
           to="/"
           style={{

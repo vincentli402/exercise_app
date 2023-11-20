@@ -18,7 +18,7 @@ const BodyPart = ({ item, setBodyPart, bodyPart }) => (
     }}
     onClick={() => {
       setBodyPart(item);
-      window.scrollTo({ top: 1800, left: 100, behavior: "smooth" });
+      window.scrollTo({ top: 650, left: 100, behavior: "smooth" });
     }}
   >
     <Typography
