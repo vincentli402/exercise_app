@@ -1,70 +1,89 @@
-# Getting Started with Create React App
+# Fitness App Readme
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+This Fitness App is a web application built with React and Express that allows users to explore a variety of exercises, categorized by body parts. The app utilizes a third-party API to fetch exercise data and provides a user-friendly interface to search for exercises based on specific criteria.
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+### 1. Home Page
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **Welcome Message**: The home page displays a welcome message to users.
+- **Navigation**: Users can navigate to different sections of the app using the navigation bar.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### 2. Exercise Detail Page
 
-### `npm test`
+- **Exercise Detail View**: Users can view detailed information about a specific exercise, including its name, body part, target, and required equipment.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### 3. Exercise List Page
 
-### `npm run build`
+- **Exercise Cards**: Displays a list of exercises with their names and accompanying images.
+- **Pagination**: Enables users to navigate through multiple pages of exercise cards.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### 4. Search Exercises Page
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+- **Search Bar**: Users can search for exercises based on keywords such as exercise name, target, equipment, or body part.
+- **Body Part Selection**: Provides a horizontal scrollbar for selecting body parts, allowing users to filter exercises by specific body parts.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Getting Started
 
-### `npm run eject`
+Follow these steps to set up and run the Fitness App:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Prerequisites
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Node.js installed on your machine.
+- API key for the RapidAPI used in the Express server.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Installation
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Install dependencies for both the client and server:
 
-## Learn More
+   ```bash
+   cd client
+   npm install
+   cd ../server
+   npm install
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+2. Set up environment variables:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+   Create a `.env` file in the `server` directory and add your RapidAPI key:
 
-### Code Splitting
+   ```env
+   REACT_APP_RAPID_API_KEY=your-rapid-api-key
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Running the App
 
-### Analyzing the Bundle Size
+1. Start the Express server:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+   ```bash
+   cd server
+   node app
+   ```
 
-### Making a Progressive Web App
+   The server will run on `http://localhost:4000`.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+2. In a separate terminal, start the React client:
 
-### Advanced Configuration
+   ```bash
+   cd client
+   npm start
+   ```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+   The React app will run on `http://localhost:3000`.
 
-### Deployment
+3. Open your web browser and go to `http://localhost:3000` to access the Fitness App.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+## Usage
 
-### `npm run build` fails to minify
+- Navigate through the app using the provided links in the navigation bar.
+- Explore exercises by body parts on the Home page.
+- Click on an exercise card to view detailed information on the Exercise Detail page.
+- Use the Search Exercises page to search for specific exercises based on keywords or filter by body part.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Credits
+
+- **React**: A JavaScript library for building user interfaces. [React Documentation](https://reactjs.org/docs/getting-started.html)
+- **Express**: A fast, unopinionated, minimalist web framework for Node.js. [Express Documentation](https://expressjs.com/)
+- **RapidAPI**: A platform that allows developers to find, connect to, and manage thousands of APIs. [RapidAPI](https://rapidapi.com/)
