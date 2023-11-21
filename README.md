@@ -1,8 +1,8 @@
-# Fitness App Readme
+# Exercise App
 
 ## Overview
 
-This Fitness App is a web application built with React and Express that allows users to explore a variety of exercises, categorized by body parts. The app utilizes a third-party API to fetch exercise data and provides a user-friendly interface to search for exercises based on specific criteria.
+This Exercise App is a web application built with React and Express that allows users to explore a variety of exercises, categorized by body parts. The app utilizes a third-party API to fetch exercise data and provides a user-friendly interface to search for exercises based on specific criteria.
 
 ## Features
 
@@ -27,7 +27,7 @@ This Fitness App is a web application built with React and Express that allows u
 
 ## Getting Started
 
-Follow these steps to set up and run the Fitness App:
+Follow these steps to set up and run the Exercise App:
 
 ### Prerequisites
 
@@ -73,7 +73,7 @@ Follow these steps to set up and run the Fitness App:
 
    The React app will run on `http://localhost:3000`.
 
-3. Open your web browser and go to `http://localhost:3000` to access the Fitness App.
+3. Open your web browser and go to `http://localhost:3000` to access the Exercise App.
 
 ## Usage
 
